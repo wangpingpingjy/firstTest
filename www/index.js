@@ -21,6 +21,12 @@ var appmodule=angular.module("app", ['ionic', 'oc.lazyLoad'])
 		name:'htf'
 	};
 })
+.service('myService',function(){
+	this.name="wangpp";
+	this.getData=function(){
+		return "wangpp";
+	}
+});
 appmodule.controller("childCtrl1",['$scope','Data','$rootScope',function($scope,Data,$rootScope){
 	$scope.data=Data;
 	var datas={
@@ -33,8 +39,10 @@ appmodule.controller("childCtrl1",['$scope','Data','$rootScope',function($scope,
 		$scope.data=data;
 	});
 }])
-appmodule.controller("childCtrl2",['$scope','Data','$rootScope',function($scope,Data,$rootScope){
+appmodule.controller("childCtrl2",['$scope','Data','myService','myProvider','$rootScope',function($scope,Data,myService,myProvider,$rootScope){
+	$scope.r=myService.getData();
 	$scope.data=Data;
+	$scope.lastName=myProvider.lastName;
 	var datas={
 			name:"wangpingping"
 		};
